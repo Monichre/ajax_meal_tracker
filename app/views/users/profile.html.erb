@@ -1,0 +1,30 @@
+<h2>Profile</h2>
+
+<%= @user.email %><br>
+<% if @user.avatar.exists? %>
+  <%= image_tag @user.avatar.url(:medium), class: "img-circle" %>
+<% else %>
+<h3>You have not uploaded a photo, let's change that</h3>
+  <%= form_for @user do |f| %>
+    <div class="field">
+      <%= f.label :avatar %><br />
+      <%= f.file_field :avatar %>
+    </div>
+    <%= f.submit "Add Image" %>
+  <% end %>
+<% end %>
+
+<div class="calendar">
+  <%= month_calendar events:@user.entries do |date, entries| %>
+    <%= date %> <br>
+    <% entries.each do |entry| %>
+      <% if date == entry.created_at.strftime("%Y-%m-%d") %>
+        <%= link_to "View this entry", user_entry_path(@user, entry) %>
+      <% else %>
+        <%= button_to user_entries_path(@user) do %>
+          <strong>Add new Entry</strong</>
+        <% end %><!-- end of button -->
+      <% end %><!-- end of if loop -->
+    <% end %><!--end of each loop -->
+  <% end %>
+</div>

@@ -1,0 +1,11 @@
+class CreateExercises < ActiveRecord::Migration[5.0]
+  def change
+    create_table :exercises do |t|
+      t.string :name
+      t.integer :calorie_count
+      t.integer :entry_id
+
+      t.timestamps
+    end
+  end
+end

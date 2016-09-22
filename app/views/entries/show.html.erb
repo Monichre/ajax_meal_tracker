@@ -1,0 +1,33 @@
+<h1>Entry for <%= @entry.created_at.strftime("%Y-%m-%d") %> </h1><br>
+
+
+<% if (@entry.meal && @entry.exercise) %>
+  <div class="row">
+    <div class="col-xs-6">
+      <p>Meal:
+        <%= @entry.meal.name %>
+      </p>
+      <p>Calories consumed:
+        <%= @entry.meal.calorie_count %>
+      </p>
+    </div>
+    <div class="col-xs-6">
+      <p>Exercise type:
+        <%= @entry.exercise.name %>
+      </p>
+      <p>Calories burned:
+        <%= @entry.exercise.calorie_count %>
+      </p>
+    </div>
+  </div>
+<% else %>
+
+  <%= link_to "New meal entry", new_user_entry_meal_path(@user, @entry), remote: true, id: :new_meal_link %><br>
+  <%= link_to "New exercise entry", new_user_entry_exercise_path(@user, @entry), remote: true, id: :new_exercise_link %>
+
+<% end %>
+
+
+<div id="results">
+
+</div>

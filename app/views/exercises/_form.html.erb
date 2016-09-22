@@ -1,0 +1,7 @@
+<%= form_for([@user, @entry, @exercise], remote: true) do |f| %>
+  <%= f.label :name, "Exercise" %><br>
+  <%= f.text_field :name %><br>
+  <%= f.label :calorie_count, "Calories burned" %><br>
+  <%= f.text_field :calorie_count %><br>
+  <%= f.submit "Add" %>
+<% end %>
